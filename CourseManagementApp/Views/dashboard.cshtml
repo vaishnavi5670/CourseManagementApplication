@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Dashboard";
+    var userName = ViewContext.HttpContext.Session.GetString("UserName") ?? "User";
+    var userRole = ViewContext.HttpContext.Session.GetString("UserRole") ?? "";
+
+    var totalAdmins = ViewBag.TotalAdmins ?? 0;
+    var totalStudents = ViewBag.TotalStudents ?? 0;
+    var totalCourses = ViewBag.TotalCourses ?? 0;
+    var totalEnrollments = ViewBag.TotalEnrollments ?? 0;
+}
+
+<h2>Welcome, @userName!</h2>
+<p>Role: @userRole</p>
+
+<div class="row mt-4">
+
+    <!-- Total Admins -->
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Admins</h5>
+                <p class="card-text">
+                    @ViewBag.TotalAdmins ?? 0
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Students -->
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Students</h5>
+                <p class="card-text">
+                    @ViewBag.TotalStudents ?? 0
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Courses -->
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Courses</h5>
+                <p class="card-text">
+                    @ViewBag.TotalCourses ?? 0
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Enrollments -->
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total Enrollments</h5>
+                <p class="card-text">
+                    @ViewBag.TotalEnrollments ?? 0
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

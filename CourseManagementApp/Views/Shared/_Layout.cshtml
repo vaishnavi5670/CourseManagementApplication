@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - CourseManagementApp</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #343a40;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+            .sidebar .nav-link {
+                color: #ddd;
+                padding: 12px 20px;
+                font-size: 15px;
+            }
+
+                .sidebar .nav-link:hover,
+                .sidebar .nav-link.active {
+                    background-color: #495057;
+                    color: #fff;
+                }
+
+        .content-wrapper {
+            flex: 1;
+            background: #f8f9fa;
+        }
+
+        .topbar {
+            background: #fff;
+            padding: 15px 25px;
+            border-bottom: 1px solid #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="text-center py-4">
+            <h4>📘 Course Manager</h4>
+        </div>
+
+        <nav class="nav flex-column">
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")"
+               asp-controller="Home" asp-action="Indexs">Dashboard</a>
+
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Admins" ? "active" : "")"
+               asp-controller="Admins" asp-action="Index">Admins</a>
+
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Students" ? "active" : "")"
+               asp-controller="Students" asp-action="Index">Students</a>
+
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Courses" ? "active" : "")"
+               asp-controller="Courses" asp-action="Index">Courses</a>
+
+            <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Enrollments" ? "active" : "")"
+               asp-controller="StudentEnrollments" asp-action="Index">Enrollments</a>
+
+            <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <div class="topbar d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">@ViewData["Title"]</h5>
+
+            <div>
+                @if (Context.Session.GetString("UserRole") != null)
+                {
+                    <span class="me-3">
+                        Welcome @Context.Session.GetString("Email") (@Context.Session.GetString("UserRole"))
+                    </span>
+                    <a class="btn btn-sm btn-outline-danger" asp-controller="Auth" asp-action="Logout">Logout</a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-outline-primary me-2" asp-controller="Auth" asp-action="AdminLogin">Admin Login</a>
+                    <a class="btn btn-sm btn-outline-success" asp-controller="Auth" asp-action="StudentLogin">Student Login</a>
+                }
+            </div>
+
+        </div>
+
+        <div class="p-4">
+            @RenderBody()
+        </div>
+
+        <footer class="text-center py-3">
+            <small>&copy; 2025 - CourseManagementApp</small>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

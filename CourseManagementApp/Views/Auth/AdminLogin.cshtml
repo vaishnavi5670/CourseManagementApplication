@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Admin Login";
+}
+
+<h2>Admin Login</h2>
+
+<form method="post" autocomplete="off">
+    <!-- Hidden dummy fields to trick browser autofill -->
+    <input type="text" style="display:none">
+    <input type="password" style="display:none">
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input name="email" type="email" class="form-control" autocomplete="off" required />
+    </div>
+
+    <div class="mb-3">
+        <label>Password</label>
+        <input name="password" type="password" class="form-control" autocomplete="new-password" required />
+    </div>
+
+    <button class="btn btn-primary">Login</button>
+
+    <p class="text-danger">@ViewBag.Error</p>
+</form>
