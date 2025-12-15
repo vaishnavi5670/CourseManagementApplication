@@ -22,7 +22,7 @@ namespace CourseManagementApp.Models
         [DataType(DataType.Password)]
         public string Password { get; set; } = string.Empty;
 
-        [StringLength(20)]
+        [Phone] //changed to phone type
         public string? Phone { get; set; }
 
         [Required]
