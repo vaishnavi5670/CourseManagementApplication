@@ -36,6 +36,7 @@ namespace CourseManagementApp.Controllers
             var admin = _context.Admins.FirstOrDefault(a => a.Email == email);
             if (admin == null)
             {
+                Console.WriteLine("Admin login attempt failed: Admin not found for email " + email);
                 ViewBag.Error = "Admin not found!";
                 return View();
             }
